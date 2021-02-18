@@ -1,0 +1,36 @@
+{
+  "name": "disclysia",
+  "version": "1.0.2",
+  "description": "Wrapper for Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Langsdorf/disclysia.git"
+  },
+  "keywords": [
+    "Wrapper",
+    "Discord",
+    "Discordapp",
+    "API",
+    "disclysia",
+    "clysia"
+  ],
+  "author": "Langsdorf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Langsdorf/disclysia/issues"
+  },
+  "homepage": "https://github.com/Langsdorf/disclysia#readme",
+  "dependencies": {
+    "erlpack": "^0.1.3",
+    "eventemitter3": "^4.0.7",
+    "ws": "^7.4.3",
+    "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "@types/ws": "^7.4.0"
+  }
+}
