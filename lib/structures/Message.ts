@@ -1,4 +1,4 @@
-import Client from "../Client"
+import { Client } from "../Disclysia"
 import Embed from "./Embed"
 
 export default class Message {

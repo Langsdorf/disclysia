@@ -6,7 +6,7 @@ import RequestHandler from "./utils/rest/RequestHandler";
 import * as Constants from "./utils/Constants"
 
 //todo
-export default class Client extends EventEmitter {
+export class Client extends EventEmitter {
 
     guilds: Map<string, Guild> = new Map<string, Guild>();
     guild_channel: Map<string, Guild> = new Map<string, Guild>();

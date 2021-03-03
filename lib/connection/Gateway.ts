@@ -4,7 +4,7 @@ import Erlpack from "erlpack"
 import WebSocket from "./WebSocket"
 import EventEmitter from "eventemitter3"
 import Bucket from "../utils/Bucket"
-import Client from "../Client"
+import { Client } from "../Disclysia"
 import Guild from "../structures/Guild"
 import Message from "../structures/Message"
 
@@ -45,11 +45,18 @@ export default class Gateway extends EventEmitter {
     presence: {
         afk: boolean
         since: string | null
-        status: string
+        status: string,
+        activities?: Array<any>
     } = {
             afk: false,
             since: null,
-            status: Constants.Presence.ONLINE
+            status: Constants.Presence.ONLINE,
+            activities: [
+                {
+                    name: "Disclysia v" + Constants.DISCLYSIA_VERSION,
+                    type: 0,
+                }
+            ]
         }
 
     constructor(token: string, client: Client) {
@@ -84,7 +91,7 @@ export default class Gateway extends EventEmitter {
     }
 
     handleError(socket: WebSocket, error: Error) {
-        if (error != undefined) { this.emit("error", error)}
+        if (error != undefined) { this.emit("error", error) }
 
         if (this.ws !== socket) socket.close(4805)
     }
@@ -274,7 +281,7 @@ export default class Gateway extends EventEmitter {
         if (this.ws && this.ws.connected) {
 
             const func = () => {
-                const _data = Erlpack.pack({op: code, d: data})
+                const _data = Erlpack.pack({ op: code, d: data })
 
                 //@ts-ignore
                 this.ws.send(_data)
@@ -352,6 +359,7 @@ export default class Gateway extends EventEmitter {
             intents: Constants.GATEWAY_INTENTS_ALL
         }
     }
+
 }
 
 export interface Packet {

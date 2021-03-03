@@ -1,6 +1,6 @@
 //https://discord.com/developers/docs/resources/channel#channel-object-channel-types
 
-import Client from "../Client";
+import { Client } from "../Disclysia";
 import Overwrite from "./Overwrite";
 
 export default class Channel {

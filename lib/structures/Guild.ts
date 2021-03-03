@@ -1,4 +1,4 @@
-import Client from "../Client"
+import { Client } from "../Disclysia"
 import Channel from "./Channel"
 import Member from "./Member"
 import Overwrite from "./Overwrite"

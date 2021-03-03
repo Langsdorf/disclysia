@@ -1,5 +1,5 @@
 import zlib from "zlib"
-import Client from "../../Client"
+import { Client } from "../../Disclysia"
 import * as Constants from "../Constants"
 import HTTPS from "https"
 
