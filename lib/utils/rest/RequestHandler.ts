@@ -71,24 +71,28 @@ export default class RequestHandler {
                     }
                 }
 
-                stream
-                    .on("data", (str) => {
-                        response += str
-                    })
-                    .on("error", (err) => {
-                        reject(err)
-                    })
-                    .once("end", () => {
-                        if (response.length > 0) {
-                            if (resp.headers["content-type"] === "application/json") {
-                                try {
-                                    resolve(JSON.parse(response))
-                                } catch (err) {
-                                    return reject(err)
+                if (stream) {
+                    stream
+                        .on("data", (str) => {
+                            response += str
+                        })
+                        .on("error", (err) => {
+                            reject(err)
+                        })
+                        .once("end", () => {
+                            if (response.length > 0) {
+                                if (resp.headers["content-type"] === "application/json") {
+                                    try {
+                                        resolve(JSON.parse(response))
+                                    } catch (err) {
+                                        return reject(err)
+                                    }
                                 }
+                            } else {
+                                reject()
                             }
-                        }
-                    })
+                        })
+                }
             })
 
             req.once("abort", () => {
