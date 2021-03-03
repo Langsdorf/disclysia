@@ -41,3 +41,6 @@ export const OPCodes = {
     SYNC_GUILD: 12,
     GUILD_SUBSCRIPTIONS: 14,
 }
+
+export const BASE_URL = "/api/v8"
+export const CHANNEL_MESSAGES = (channelID: string) => `/channels/${channelID}/messages`

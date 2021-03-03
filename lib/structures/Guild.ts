@@ -46,6 +46,7 @@ export default class Guild {
             })
 
             this.channels.set(rawCH.id, new Channel(this.client, rawCH.id, rawCH.name, rawCH.parent_id, permission_overwrites, rawCH.type))
+            this.client.guild_channel.set(rawCH.id, this)
         })
 
         data.roles.forEach((rawRole: any) => {
