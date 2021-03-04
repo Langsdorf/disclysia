@@ -29,6 +29,7 @@ export default class Guild {
     }
 
     getMember(member_id: string): Member | undefined {
+
         return this.members.get(member_id)
     }
 
@@ -54,7 +55,9 @@ export default class Guild {
         })
 
         data.members.forEach((rawMember: any) => {
-            this.members.set(rawMember.id, new Member(this.client, rawMember.nick, rawMember.user.id, rawMember.roles))
+            this.members.set(rawMember.user.id, new Member(this.client, rawMember.nick, rawMember.user.id, rawMember.roles, this.id))
         })
+
+        this.client.guilds.set(this.id, this)
     }
 }

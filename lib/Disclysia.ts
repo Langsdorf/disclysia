@@ -1,15 +1,16 @@
-import EventEmitter from "eventemitter3";
-import Gateway from "./connection/Gateway";
-import Guild from "./structures/Guild";
-import Message from "./structures/Message";
-import RequestHandler from "./utils/rest/RequestHandler";
+import EventEmitter from "eventemitter3"
+import Gateway from "./connection/Gateway"
+import Guild from "./structures/Guild"
+import Message from "./structures/Message"
+import RequestHandler from "./utils/rest/RequestHandler"
 import * as Constants from "./utils/Constants"
+import Member from "./structures/Member"
 
 //todo
 export class Client extends EventEmitter {
 
-    guilds: Map<string, Guild> = new Map<string, Guild>();
-    guild_channel: Map<string, Guild> = new Map<string, Guild>();
+    guilds: Map<string, Guild> = new Map<string, Guild>()
+    guild_channel: Map<string, Guild> = new Map<string, Guild>()
 
     gateway: Gateway
 
@@ -18,7 +19,7 @@ export class Client extends EventEmitter {
     requestHandler: RequestHandler
 
     constructor(token: string) {
-        super();
+        super()
 
         this.token = token
         this.requestHandler = new RequestHandler(this)
@@ -28,18 +29,44 @@ export class Client extends EventEmitter {
     }
 
     sendMessage(channel_id: string, content: any) {
-
         return new Promise((resolve, reject) => {
             if (typeof content != "object") {
                 content = {
                     content: "" + content
-                };
+                }
             } else if (content.content && typeof content.content != "string") {
-                content.content = "" + content.content;
+                content.content = "" + content.content
             }
 
-            return this.requestHandler.request(Constants.CHANNEL_MESSAGES(channel_id), content, "POST").then((message) => { resolve(this._parseMessage(message)) }).catch(e => { reject(e) });
+            return this.requestHandler.request(Constants.CHANNEL_MESSAGES(channel_id), content, "POST").then((message) => { resolve(this._parseMessage(message)) }).catch(e => { reject(e) })
         })
+    }
+
+    addRole(guild_id, member_id, role_id): Promise<void> {
+        return new Promise((resolve, reject) => {
+            return this.requestHandler.request(Constants.MEMBER_ROLE(guild_id, member_id, role_id), {}, "PUT").then(() => { resolve() }).catch(e => { reject(e) })
+        })
+    }
+
+    removeRole(guild_id, member_id, role_id): Promise<void> {
+        return new Promise((resolve, reject) => {
+            return this.requestHandler.request(Constants.MEMBER_ROLE(guild_id, member_id, role_id), {}, "DELETE").then(() => { resolve() }).catch(e => { reject(e) })
+        })
+    }
+
+    editMember(guild_id, member_id, nick?): Promise<void> {
+        return new Promise((resolve, reject) => {
+            return this.requestHandler.request(Constants.MEMBER_EDIT(guild_id, member_id), {
+                nick: nick
+            }, "PATCH").then((res: any) => {
+                if (res.user) resolve()
+                else reject(res.message)
+            }).catch(e => { reject(e) })
+        })
+    }
+
+    getMember(guild_id, member_id): Member {
+        return this.guilds.get(guild_id).getMember(member_id)
     }
 
     getGateway(): Gateway {

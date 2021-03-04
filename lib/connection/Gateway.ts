@@ -7,6 +7,7 @@ import Bucket from "../utils/Bucket"
 import { Client } from "../Disclysia"
 import Guild from "../structures/Guild"
 import Message from "../structures/Message"
+import Member from "../structures/Member"
 
 
 export default class Gateway extends EventEmitter {
@@ -214,6 +215,40 @@ export default class Gateway extends EventEmitter {
                 guild._configureFromPacket(data)
 
                 this.client.guilds.set(data.id, guild)
+
+                break
+            }
+
+            case "GUILD_MEMBER_ADD": {
+                const guild = this.client.guilds.get(data.guild_id)
+
+                if (guild) {
+                    guild.member_count++
+
+                    const member = new Member(this.client, data.nick, data.user.id, data.roles, data.guild_id)
+                    
+                    guild.members.set(data.user.id, member)
+
+                    this.emit("guildMemberAdd", guild, member)
+                }
+
+                break
+            }
+
+            case "GUILD_MEMBER_REMOVE": {
+                const guild = this.client.guilds.get(data.guild_id)
+
+                if (guild) {
+                    guild.member_count--
+
+                    const member = guild.getMember(data.user.id) ?? data.user
+
+                    guild.members.delete(data.user.id)
+
+                    this.emit("guildMemberRemove", guild, member)
+                }
+
+                break
             }
 
             case "PRESENCE_UPDATE": {
