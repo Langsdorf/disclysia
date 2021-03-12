@@ -1,6 +1,6 @@
 {
   "name": "disclysia",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Wrapper for Discord",
   "main": "index.js",
   "scripts": {

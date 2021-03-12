@@ -1,4 +1,4 @@
-export const DISCLYSIA_VERSION: string = "1.0.4"
+export const DISCLYSIA_VERSION: string = "1.0.5"
 
 export const GATEWAY_VERSION: number = 8
 export const ENCODING: string = "etf"
@@ -46,3 +46,4 @@ export const BASE_URL = "/api/v8"
 export const CHANNEL_MESSAGES = (channelID: string) => `/channels/${channelID}/messages`
 export const MEMBER_ROLE = (guild_id, member_id, role_id) => `/guilds/${guild_id}/members/${member_id}/roles/${role_id}`
 export const MEMBER_EDIT = (guild_id, member_id) => `/guilds/${guild_id}/members/${member_id}`
+export const USER_CHANNEL = (member_id) => `/users/${member_id}/channels`;

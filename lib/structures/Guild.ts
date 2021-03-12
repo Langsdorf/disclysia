@@ -33,6 +33,10 @@ export default class Guild {
         return this.members.get(member_id)
     }
 
+    getMembers() {
+        return this.members
+    }
+
     _configureFromPacket(data: any) {
         this.id = data.id
         this.member_count = data.member_count
