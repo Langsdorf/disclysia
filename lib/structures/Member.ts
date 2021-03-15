@@ -1,14 +1,14 @@
-import { Client } from "../Disclysia"
+import { Disclysia } from "../Disclysia"
 
 export default class Member {
 
-    client: Client
+    client: Disclysia
     nickname: string
     id: string
     roles: Array<string>
     guild_id: string
 
-    constructor(client: Client, nickname: string, id: string, roles: Array<string>, guild_id: string) {
+    constructor(client: Disclysia, nickname: string, id: string, roles: Array<string>, guild_id: string) {
         this.client = client
         this.nickname = nickname
         this.id = id

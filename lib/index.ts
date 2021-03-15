@@ -1,6 +1,8 @@
-import { Client } from "./Disclysia"
+import { Disclysia } from "./Disclysia"
 
 
-function Disclysia(token: string) {
-    return new Client(token)
+function Client(token: string) {
+    return new Disclysia(token)
 }
+
+export default Client

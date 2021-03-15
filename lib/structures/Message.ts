@@ -1,4 +1,4 @@
-import { Client } from "../Disclysia"
+import { Disclysia } from "../Disclysia"
 import Embed from "./Embed"
 
 export default class Message {
@@ -17,9 +17,9 @@ export default class Message {
     mention_users: Array<any>
     mention_channels: Array<string>
 
-    client: Client
+    client: Disclysia
 
-    constructor(guild_id: string, attachments: Array<any>, author: {bot: boolean, username: string, id: string}, channel_id: string, content: string, id: string, mention_roles: Array<string>, mention_users: Array<any>, mention_channels: Array<string>, client: Client) {
+    constructor(guild_id: string, attachments: Array<any>, author: {bot: boolean, username: string, id: string}, channel_id: string, content: string, id: string, mention_roles: Array<string>, mention_users: Array<any>, mention_channels: Array<string>, client: Disclysia) {
         this.guild_id = guild_id
         this.attachments = attachments
         this.author = {

@@ -4,7 +4,7 @@ import Erlpack from "erlpack"
 import WebSocket from "./WebSocket"
 import EventEmitter from "eventemitter3"
 import Bucket from "../utils/Bucket"
-import { Client } from "../Disclysia"
+import { Disclysia } from "../Disclysia"
 import Guild from "../structures/Guild"
 import Message from "../structures/Message"
 import Member from "../structures/Member"
@@ -17,7 +17,7 @@ export default class Gateway extends EventEmitter {
     token: string
     ws: WebSocket | null = null
     bucket: Bucket
-    client: Client
+    client: Disclysia
 
     sequence: undefined | number = 0
     sessionID: any | null = null
@@ -60,7 +60,7 @@ export default class Gateway extends EventEmitter {
             ]
         }
 
-    constructor(token: string, client: Client) {
+    constructor(token: string, client: Disclysia) {
         super()
 
         this.token = token

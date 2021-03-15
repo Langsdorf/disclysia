@@ -1,4 +1,4 @@
-import { Client } from "../Disclysia"
+import { Disclysia } from "../Disclysia"
 import Channel from "./Channel"
 import Member from "./Member"
 import Overwrite from "./Overwrite"
@@ -13,10 +13,10 @@ export default class Guild {
     name!: string
     ownerID!: string
     members: Map<string, Member> = new Map<string, Member>()
-    client: Client
+    client: Disclysia
 
 
-    constructor(client: Client) {
+    constructor(client: Disclysia) {
         this.client = client
     }
 

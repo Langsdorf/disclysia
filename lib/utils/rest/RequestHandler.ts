@@ -1,12 +1,12 @@
 import zlib from "zlib"
-import { Client } from "../../Disclysia"
+import { Disclysia } from "../../Disclysia"
 import * as Constants from "../Constants"
 import HTTPS from "https"
 
 export default class RequestHandler {
-    client: Client
+    client: Disclysia
 
-    constructor(client: Client) {
+    constructor(client: Disclysia) {
         this.client = client
     }
 
