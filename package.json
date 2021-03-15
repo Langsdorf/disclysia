@@ -1,8 +1,8 @@
 {
   "name": "disclysia",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Wrapper for Discord",
-  "main": "index.js",
+  "main": "out/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/Langsdorf/disclysia.git"
   },
+  "files": [
+    "out/**/*"
+  ],
   "keywords": [
     "Wrapper",
     "Discord",

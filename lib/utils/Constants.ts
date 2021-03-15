@@ -1,4 +1,4 @@
-export const DISCLYSIA_VERSION: string = "1.0.5"
+export const DISCLYSIA_VERSION: string = "1.0.6"
 
 export const GATEWAY_VERSION: number = 8
 export const ENCODING: string = "etf"

@@ -1,6 +1,5 @@
 node_modules/
 jspm_packages/
-out/
 rar.js
 tsconfig.json
 tst.txt
